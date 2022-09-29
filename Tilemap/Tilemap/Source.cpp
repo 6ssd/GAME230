@@ -5,27 +5,86 @@
 #include <SFML/System.hpp>
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
+#include <iostream>
 
+//Namespaces
+using namespace sf;
+
+//Global variables
+Music bgm;
+SoundBuffer sfxBuffer;
+Sound sfx;
+Texture tileTexture;
+Sprite tileSprite;
+
+//Prototypes
+void handleInput(RenderWindow& window, Event& e);
+void update(RenderWindow& window);
+void render(RenderWindow& window);
+
+//Main
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+    //create window
+    RenderWindow window( VideoMode(800, 600), "SFML works!");
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    //load audio
+    if (!bgm.openFromFile("Assets/Audio/BGM.wav")) {
+        //error
+        return -1;
+    }
+    bgm.play();
+    bgm.setLoop(true);
 
+    //sound effects
+    if (!sfxBuffer.loadFromFile("Assets/Audio/Victory Jingle SFX.wav")) {
+        //error
+        return -1;
+    }
+    sfx.setBuffer(sfxBuffer);
+    
+    //load sprite
+    if (!tileTexture.loadFromFile("Assets/Graphics/Tile1.png")) {
+        //error
+        return -1;
+    }
+    tileSprite.setTexture(tileTexture);
+
+    //game loop
     while (window.isOpen())
     {
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            handleInput(window, event);
         }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        update(window);
+
+        render(window);
     }
 
     return 0;
+}
+
+void handleInput(RenderWindow& window, Event& event) {
+    if (Mouse::isButtonPressed(Mouse::Left))
+    {
+        sfx.play();
+    }
+
+    if (event.type == Event::Closed)
+        window.close();
+}
+
+void update(RenderWindow& window) {
+
+}
+
+void render(RenderWindow& window) {
+    window.clear();
+
+    window.draw(tileSprite);
+
+    window.display();
 }
