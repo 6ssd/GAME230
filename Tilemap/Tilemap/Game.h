@@ -10,6 +10,7 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 using namespace sf;

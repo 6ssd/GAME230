@@ -25,6 +25,10 @@ Vector2f mousePosition;
 int numXMultiply;
 int numYMultiply;
 
+//values for number of rows and columns of tile positions
+int rows;
+int cols;
+
 //constructor
 Game::Game() {
 }
@@ -47,9 +51,53 @@ void Game::handleInput(RenderWindow& window) {
 
         //S key: save level to level.txt file
         {
-
+            if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::S))
+            {
+                ofstream myfile("level.txt");
+                if (myfile.is_open())
+                {
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j < cols; j++)
+                        {
+                            myfile << tilePositions[i][j] << " ";
+                        }
+                        if (i != rows - 1)
+                        {
+                            myfile << endl;
+                        }
+                    }
+                    myfile.close();
+                    cout << "File saved" << endl;
+                }
+                else {
+                    cout << "Unable to open file" << endl;
+                }
+            }
         }
 
+        //L key: load level from level.txt file
+        {
+            if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::L))
+            {
+                ifstream myfile("level.txt");
+                if (myfile.is_open())
+                {
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j < cols; j++)
+                        {
+                            myfile >> tilePositions[i][j];
+                        }
+                    }
+                    myfile.close();
+                    cout << "Loaded level" << endl;
+                }
+                else {
+                    cout << "Unable to open file" << endl;
+                }
+            }
+        }
 
         //set tile position at mouse position
         //position is rounded to every 70x70 tile space
@@ -73,8 +121,18 @@ void Game::handleInput(RenderWindow& window) {
             //numYMultiply and numXMultiply are values of the x and y positions of every 70x70 tile
             //tileIndexI and tileIndexJ are math values to determine which tile should be placed
             tilePositions[numYMultiply][numXMultiply] = (7*tileIndexJ)+tileIndexI;
-            cout << "row: " << numYMultiply << ", col: " << numXMultiply << endl;
+            cout << "Row: " << numYMultiply << ", Col: " << numXMultiply << endl;
             cout << (7 * tileIndexJ) + tileIndexI << endl;
+        }
+
+        //Right mouse button: Erase tile
+        if ((event.type == Event::MouseButtonPressed) && (event.mouseButton.button == Mouse::Right))
+        {
+            //numYMultiply and numXMultiply are values of the x and y positions of every 70x70 tile
+            //tileIndexI and tileIndexJ are math values to determine which tile should be placed
+            tilePositions[numYMultiply][numXMultiply] = -1;
+            cout << "Row: " << numYMultiply << ", Col: " << numXMultiply << endl;
+            cout << -1 << endl;
         }
 
         //Up arrow: Goes to next avaliable tile
@@ -97,7 +155,7 @@ void Game::handleInput(RenderWindow& window) {
                     tileIndexJ = 0;
                 }
             }
-            cout << "sprite array index: " << tileIndexI << ", " << tileIndexJ << endl;
+            cout << "Sprite array index: " << tileIndexI << ", " << tileIndexJ << endl;
             currentTile = tileSprite[tileIndexI][tileIndexJ];
             currentTile.setPosition(mousePosition);
         }
@@ -122,7 +180,7 @@ void Game::handleInput(RenderWindow& window) {
                     tileIndexJ = 20;
                 }
             }
-            cout << "sprite array index: " << tileIndexI << ", " << tileIndexJ << endl;
+            cout << "Sprite array index: " << tileIndexI << ", " << tileIndexJ << endl;
             currentTile = tileSprite[tileIndexI][tileIndexJ];
             currentTile.setPosition(mousePosition);
         }
@@ -142,8 +200,8 @@ void Game::update(RenderWindow& window){
 }
 
 void Game::render(RenderWindow& window) {
-    int rows = sizeof(tilePositions) / sizeof(tilePositions[0]);
-    int cols = sizeof(tilePositions[0]) / sizeof(tilePositions[0][0]);
+    rows = sizeof(tilePositions) / sizeof(tilePositions[0]);
+    cols = sizeof(tilePositions[0]) / sizeof(tilePositions[0][0]);
     
     window.clear();
 
@@ -156,7 +214,7 @@ void Game::render(RenderWindow& window) {
             {
                 int tileNumber = tilePositions[i][j];
                 Sprite tile = tileSprite[tileNumber%7][tileNumber/7];
-                tile.setPosition(j * 70, i * 70);
+                tile.setPosition(float(j * 70), float(i * 70));
                 window.draw(tile);
             }
         }
@@ -176,7 +234,7 @@ int Game::loadTileset() {
         //error
         return -1;
     }
-    cout << "tileset loaded" << endl;
+    cout << "Tileset loaded" << endl;
     return 0;
 }
 
@@ -197,7 +255,7 @@ int Game::tilesToArray()
     }
     currentTile = tileSprite[0][0];
     tileIndexI, tileIndexJ = 0;
-    cout << "textures set" << endl;
+    cout << "Textures set" << endl;
     return 0;
 }
 
