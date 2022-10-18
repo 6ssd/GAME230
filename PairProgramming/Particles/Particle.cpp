@@ -5,14 +5,6 @@
 
 using namespace gm;
 
-//Global variables
-CircleShape body;
-float radius = 10;
-Vector2f position;
-Vector2f velocity;
-short lifespan;
-bool alive;
-
 //constructor
 Particle::Particle() {
 	body = CircleShape(radius);
@@ -35,15 +27,15 @@ void Particle::render(RenderWindow& window) {
 }
 
 
-CircleShape Particle::getShape() {
+CircleShape Particle::getShape() const {
 	return body;
 }
 
-Vector2f Particle::getVelocity() {
+Vector2f Particle::getVelocity() const{
 	return velocity;
 }
 
-bool Particle::isAlive() {
+bool Particle::isAlive() const{
 	return alive;
 }
 

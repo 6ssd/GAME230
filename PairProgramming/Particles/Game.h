@@ -30,26 +30,37 @@ namespace gm {
 
 
 	class Particle {
+	private:
+		//Global variables
+		CircleShape body;
+		float radius = 10;
+		Vector2f position;
+		Vector2f velocity;
+		short lifespan;
+		bool alive;
 	public:
 		//Prototypes
 		Particle();
 		void update(RenderWindow& window);
 		void render(RenderWindow& window);
-		CircleShape getShape();
-		Vector2f getVelocity();
-		bool isAlive();
+		CircleShape getShape() const;
+		Vector2f getVelocity() const;
+		bool isAlive() const;
 		void setVelocity(Vector2f vel);
 		~Particle();
 	};
 
 	class ParticleEffect {
+	private:
+		//Global variables
+		Particle* arr[10];
 	public:
 		//Prototypes
 		ParticleEffect();
 		void update(RenderWindow& window);
 		void render(RenderWindow& window);
 		void emit();
-		void addParticle(int index, Particle* particle);
+		Particle* addParticle(int index, Particle* particle);
 	};
 }
 

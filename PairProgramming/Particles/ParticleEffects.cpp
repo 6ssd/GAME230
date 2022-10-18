@@ -5,19 +5,22 @@
 
 using namespace gm;
 
-//Global variables
-Particle *arr[10];
-
 //constructor
 ParticleEffect::ParticleEffect(){
-
+	for (int i = 0; i < 10; i++)
+	{
+		arr[i] = NULL;
+	}
 }
 
 //functions
 void ParticleEffect::update(RenderWindow& window) {
 	for (int i = 0; i < 10; i++)
 	{
-		arr[i]->update(window);
+		if (arr[i] != NULL)
+		{
+			arr[i]->update(window);
+		}
 	}
 }
 
@@ -26,9 +29,12 @@ void ParticleEffect::render(RenderWindow& window) {
 
 	for (int i = 0; i < 10; i++)
 	{
-		window.draw(arr[i]->getShape());
-		cout << arr[i]->getShape().getPosition().x << " ," << arr[i]->getShape().getPosition().y << endl;
-		cout << "drew " << i << endl;
+		if (arr[i] != NULL)
+		{
+			window.draw(arr[i]->getShape());
+			cout << arr[i]->getShape().getPosition().x << " ," << arr[i]->getShape().getPosition().y << endl;
+			cout << "drew " << i << endl;
+		}
 	}
 
 	window.display();
@@ -38,14 +44,17 @@ void ParticleEffect::emit() {
 	for (int i = 0; i < 10; i++)
 	{
 		Particle* ptr = new Particle();
-		addParticle(i, ptr);
+		arr[i] = addParticle(i, ptr);
 	}
 }
 
-void ParticleEffect::addParticle(int index, Particle* particle) {
-	Vector2f vel = Vector2f(Random::Range(-0.1f, 0.1f), Random::Range(-0.1f, 0.1f));
+Particle* ParticleEffect::addParticle(int index, Particle* particle) {
+	Vector2f vel = Vector2f(Random::Range(-0.5f, 0.5f), Random::Range(-0.5f, 0.5f));
 	cout << "velocity: " << vel.x << " ," << vel.y << endl;
 	particle->setVelocity(vel);
-	arr[index] = particle;
-	cout << "assigned velocity: " << arr[index]->getVelocity().x << " ," << arr[index]->getVelocity().y << endl;
+	/*for (int i = 0; i <= index; i++)
+	{
+		cout << "assigned velocity: " << arr[i]->getVelocity().x << " ," << arr[i]->getVelocity().y << endl;
+	}*/
+	return particle;
 }
