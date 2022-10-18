@@ -14,17 +14,14 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-using namespace sf;
-
 namespace gm {
 	class Game {
 	public:
 		//Prototypes
 		Game();
-		void handleInput(RenderWindow& window);
-		void update(RenderWindow& window);
-		void render(RenderWindow& window);
+		void handleInput(sf::RenderWindow& window);
+		void update(sf::RenderWindow& window);
+		void render(sf::RenderWindow& window);
 		~Game();
 	};
 
@@ -32,21 +29,21 @@ namespace gm {
 	class Particle {
 	private:
 		//Global variables
-		CircleShape body;
+		sf::CircleShape body;
 		float radius = 10;
-		Vector2f position;
-		Vector2f velocity;
+		sf::Vector2f position;
+		sf::Vector2f velocity;
 		short lifespan;
 		bool alive;
 	public:
 		//Prototypes
 		Particle();
-		void update(RenderWindow& window);
-		void render(RenderWindow& window);
-		CircleShape getShape() const;
-		Vector2f getVelocity() const;
+		void update(sf::RenderWindow& window);
+		void render(sf::RenderWindow& window);
+		sf::CircleShape getShape() const;
+		sf::Vector2f getVelocity() const;
 		bool isAlive() const;
-		void setVelocity(Vector2f vel);
+		void setVelocity(sf::Vector2f vel);
 		~Particle();
 	};
 
@@ -54,11 +51,12 @@ namespace gm {
 	private:
 		//Global variables
 		Particle* arr[10];
+		sf::Clock clock;
 	public:
 		//Prototypes
 		ParticleEffect();
-		void update(RenderWindow& window);
-		void render(RenderWindow& window);
+		void update(sf::RenderWindow& window);
+		void render(sf::RenderWindow& window);
 		void emit();
 		Particle* addParticle(int index, Particle* particle);
 	};

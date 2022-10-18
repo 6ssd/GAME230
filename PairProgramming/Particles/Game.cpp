@@ -4,6 +4,9 @@
 #include "Random.h"
 
 using namespace gm;
+using namespace sf;
+using namespace std;
+
 //Global Variable
 ParticleEffect e;
 

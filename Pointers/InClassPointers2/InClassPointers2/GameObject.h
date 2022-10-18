@@ -23,6 +23,8 @@ namespace gm {
 
 		void render(sf::RenderWindow& window);
 
+		void setPosition(const sf::Vector2f& position);
+
 		~GameObject();
 	};
 }

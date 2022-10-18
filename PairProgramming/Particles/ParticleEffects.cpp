@@ -4,6 +4,8 @@
 #include "Random.h"
 
 using namespace gm;
+using namespace sf;
+using namespace std;
 
 //constructor
 ParticleEffect::ParticleEffect(){
@@ -15,6 +17,17 @@ ParticleEffect::ParticleEffect(){
 
 //functions
 void ParticleEffect::update(RenderWindow& window) {
+	Time t = clock.getElapsedTime();
+	if (t.asSeconds() > 3)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			delete arr[i];
+			arr[i] = NULL;
+		}
+		clock.restart();
+	}
+
 	for (int i = 0; i < 10; i++)
 	{
 		if (arr[i] != NULL)
@@ -43,8 +56,13 @@ void ParticleEffect::render(RenderWindow& window) {
 void ParticleEffect::emit() {
 	for (int i = 0; i < 10; i++)
 	{
+		if (arr[i] != NULL)
+		{
+			delete arr[i];
+		}
 		Particle* ptr = new Particle();
 		arr[i] = addParticle(i, ptr);
+		cout << "assigned velocity: " << arr[i]->getVelocity().x << " ," << arr[i]->getVelocity().y << endl;
 	}
 }
 
@@ -52,9 +70,5 @@ Particle* ParticleEffect::addParticle(int index, Particle* particle) {
 	Vector2f vel = Vector2f(Random::Range(-0.5f, 0.5f), Random::Range(-0.5f, 0.5f));
 	cout << "velocity: " << vel.x << " ," << vel.y << endl;
 	particle->setVelocity(vel);
-	/*for (int i = 0; i <= index; i++)
-	{
-		cout << "assigned velocity: " << arr[i]->getVelocity().x << " ," << arr[i]->getVelocity().y << endl;
-	}*/
 	return particle;
 }

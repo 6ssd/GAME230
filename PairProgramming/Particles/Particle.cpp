@@ -4,6 +4,8 @@
 #include "Random.h"
 
 using namespace gm;
+using namespace sf;
+using namespace std;
 
 //constructor
 Particle::Particle() {
@@ -44,5 +46,4 @@ void Particle::setVelocity(Vector2f vel) {
 }
 
 Particle::~Particle() {
-
 }

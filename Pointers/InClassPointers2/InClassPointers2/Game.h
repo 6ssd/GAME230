@@ -17,8 +17,9 @@ using namespace sf;
 
 namespace gm {
 	class Game {
+	private:
+		GameObject test;
 	public:
-
 		//Prototypes
 		Game();
 		void handleInput(RenderWindow& window);
