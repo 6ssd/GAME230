@@ -28,11 +28,7 @@ void Game::handleInput(RenderWindow& window) {
 }
 
 void Game::update(RenderWindow& window){
-    Event event;
-    while (window.pollEvent(event))
-    {
-        e.update(window);
-    }
+    e.update(window);
 }
 
 void Game::render(RenderWindow& window) {

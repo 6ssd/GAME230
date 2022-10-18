@@ -24,7 +24,6 @@ Particle::Particle() {
 //functions
 void Particle::update(RenderWindow& window) {
 	body.setPosition(position + velocity);
-	cout << position.x << " ," << position.y << endl;
 	position = body.getPosition();
 }
 

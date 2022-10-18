@@ -46,7 +46,7 @@ namespace gm {
 		void update(RenderWindow& window);
 		void render(RenderWindow& window);
 		void emit();
-		void addParticle(int index);
+		void addParticle(int index, Particle* particle);
 	};
 }
 
