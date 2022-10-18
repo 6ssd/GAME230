@@ -1,3 +1,5 @@
+//Nanxiang Wang & Akshat Sachan
+
 #ifndef GAME_H
 #define GAME_H
 
@@ -33,7 +35,8 @@ namespace gm {
 		Particle();
 		void update(RenderWindow& window);
 		void render(RenderWindow& window);
-		CircleShape getPosition();
+		CircleShape getShape();
+		Vector2f getVelocity();
 		bool isAlive();
 		void setVelocity(Vector2f vel);
 		~Particle();

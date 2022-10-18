@@ -1,3 +1,5 @@
+//Nanxiang Wang & Akshat Sachan
+
 //My Classes
 #include "Game.h"
 #include "Random.h"

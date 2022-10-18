@@ -1,3 +1,5 @@
+//Nanxiang Wang & Akshat Sachan
+
 #include "Game.h"
 #include "Random.h"
 
@@ -24,8 +26,8 @@ void ParticleEffect::render(RenderWindow& window) {
 
 	for (int i = 0; i < 10; i++)
 	{
-		window.draw(arr[i]->getPosition());
-		cout << arr[i]->getPosition().getPosition().x << " ," << arr[i]->getPosition().getPosition().y << endl;
+		window.draw(arr[i]->getShape());
+		cout << arr[i]->getShape().getPosition().x << " ," << arr[i]->getShape().getPosition().y << endl;
 		cout << "drew " << i << endl;
 	}
 
@@ -45,4 +47,5 @@ void ParticleEffect::addParticle(int index, Particle* particle) {
 	cout << "velocity: " << vel.x << " ," << vel.y << endl;
 	particle->setVelocity(vel);
 	arr[index] = particle;
+	cout << "assigned velocity: " << arr[index]->getVelocity().x << " ," << arr[index]->getVelocity().y << endl;
 }
