@@ -18,7 +18,7 @@ ParticleEffect::ParticleEffect(){
 //functions
 void ParticleEffect::update(RenderWindow& window) {
 	Time t = clock.getElapsedTime();
-	if (t.asSeconds() > 3)
+	if (t.asSeconds() > 2)
 	{
 		for (int i = 0; i < 10; i++)
 		{
@@ -59,10 +59,13 @@ void ParticleEffect::emit() {
 		if (arr[i] != NULL)
 		{
 			delete arr[i];
+			arr[i] = NULL;
 		}
 		Particle* ptr = new Particle();
 		arr[i] = addParticle(i, ptr);
 		cout << "assigned velocity: " << arr[i]->getVelocity().x << " ," << arr[i]->getVelocity().y << endl;
+
+		clock.restart();
 	}
 }
 
