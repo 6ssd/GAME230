@@ -1,7 +1,6 @@
 //Nanxiang Wang & Akshat Sachan
 
 #include "Game.h"
-#include "Random.h"
 
 using namespace gm;
 using namespace sf;

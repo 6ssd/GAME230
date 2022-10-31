@@ -1,7 +1,6 @@
 //Nanxiang Wang & Akshat Sachan
 
 #include "Game.h"
-#include "Random.h"
 
 using namespace gm;
 using namespace sf;
@@ -17,15 +16,18 @@ ParticleEffect::ParticleEffect(){
 
 //functions
 void ParticleEffect::update(RenderWindow& window) {
-	Time t = clock.getElapsedTime();
-	if (t.asSeconds() > 2)
+	if (arr[0] != NULL)
 	{
-		for (int i = 0; i < 10; i++)
+		Time t = clock.getElapsedTime();
+		if (t.asSeconds() > arr[0]->getLifespan())
 		{
-			delete arr[i];
-			arr[i] = NULL;
+			for (int i = 0; i < 10; i++)
+			{
+				delete arr[i];
+				arr[i] = NULL;
+			}
+			clock.restart();
 		}
-		clock.restart();
 	}
 
 	for (int i = 0; i < 10; i++)
@@ -53,7 +55,7 @@ void ParticleEffect::render(RenderWindow& window) {
 	window.display();
 }
 
-void ParticleEffect::emit(Vector2f pos) {
+void ParticleEffect::emit(Vector2f& pos) {
 	for (int i = 0; i < 10; i++)
 	{
 		if (arr[i] != NULL)
@@ -77,4 +79,13 @@ Particle* ParticleEffect::addParticle(int index, Particle* particle) {
 }
 
 ParticleEffect::~ParticleEffect() {
+	for (int i = 0; i < 10; i++)
+	{
+		if (arr[i] != NULL)
+		{
+			delete arr[i];
+			arr[i] = NULL;
+		}
+	}
+	delete arr;
 }

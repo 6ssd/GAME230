@@ -1,7 +1,6 @@
 //Nanxiang Wang & Akshat Sachan
 
 #include "Game.h"
-#include "Random.h"
 
 using namespace gm;
 using namespace sf;
@@ -18,7 +17,7 @@ Particle::Particle() {
 	alive = true;
 }
 
-Particle::Particle(Vector2f pos)
+Particle::Particle(Vector2f& pos)
 {
 	body = CircleShape(radius);
 	body.setFillColor(Color(255, 0, 255));
@@ -40,19 +39,23 @@ void Particle::render(RenderWindow& window) {
 }
 
 
-CircleShape Particle::getShape() const {
+const CircleShape Particle::getShape() const {
 	return body;
 }
 
-Vector2f Particle::getVelocity() const{
+const Vector2f& Particle::getVelocity() const{
 	return velocity;
 }
 
-bool Particle::isAlive() const{
+const int Particle::getLifespan() const {
+	return lifespan;
+}
+
+const bool Particle::isAlive() const{
 	return alive;
 }
 
-void Particle::setVelocity(Vector2f vel) {
+void Particle::setVelocity(Vector2f& vel) {
 	velocity = vel;
 }
 

@@ -1,7 +1,8 @@
 //Nanxiang Wang & Akshat Sachan
 
-#ifndef GAME_H
-#define GAME_H
+#ifndef PARTICLEEFFECTS_H
+#define PARTICLEEFFECTS_H
+
 
 //Includes
 #include <SFML/Graphics.hpp>
@@ -13,22 +14,22 @@
 #include <SFML/Main.hpp>
 #include <iostream>
 #include <fstream>
-
-//Headers
 #include "Particle.h"
-#include "ParticleEffects.h"
-#include "Random.h"
 
 namespace gm {
-	class Game {
+	class ParticleEffect {
+	private:
+		//Global variables
+		Particle* arr[10];
+		sf::Clock clock;
 	public:
 		//Prototypes
-		Game();
-		void handleInput(sf::RenderWindow& window);
+		ParticleEffect();
 		void update(sf::RenderWindow& window);
 		void render(sf::RenderWindow& window);
-		~Game();
+		void emit(sf::Vector2f& pos);
+		Particle* addParticle(int index, Particle* particle);
+		~ParticleEffect();
 	};
 }
-
 #endif

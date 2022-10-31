@@ -2,16 +2,11 @@
 
 //My Classes
 #include "Game.h"
-#include "Random.h"
 
 //Namespaces
 using namespace sf;
 using namespace std;
 using namespace gm;
-
-
-//Functions
-
 
 //Main
 int main()
