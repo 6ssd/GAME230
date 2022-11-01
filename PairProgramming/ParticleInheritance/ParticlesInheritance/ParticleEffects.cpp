@@ -87,5 +87,4 @@ ParticleEffect::~ParticleEffect() {
 			arr[i] = NULL;
 		}
 	}
-	delete arr;
 }
