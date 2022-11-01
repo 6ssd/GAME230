@@ -7,11 +7,11 @@ using namespace sf;
 using namespace std;
 
 //Global Variable
-ParticleEffect e;
+ParticleEffect* e;
 
 //constructor
 Game::Game() {
-    e = ParticleEffect();
+    e = new SnowEffect();
 }
 
 //functions
@@ -23,7 +23,7 @@ void Game::handleInput(RenderWindow& window) {
         if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
         {
             Vector2f mousePos = Vector2f(float(event.mouseButton.x-10), float(event.mouseButton.y-10));
-            e.emit(mousePos);
+            e->emit(mousePos);
         }
 
         //Exit program
@@ -33,11 +33,11 @@ void Game::handleInput(RenderWindow& window) {
 }
 
 void Game::update(RenderWindow& window){
-    e.update(window);
+    e->update(window);
 }
 
 void Game::render(RenderWindow& window) {
-    e.render(window);
+    e->render(window);
 }
 
 Game::~Game() {

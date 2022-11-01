@@ -14,22 +14,22 @@
 #include <SFML/Main.hpp>
 #include <iostream>
 #include <fstream>
-#include "Particle.h"
+
+#include "CircleParticle.h"
 
 namespace gm {
 	class ParticleEffect {
-	private:
+	protected:
 		//Global variables
-		Particle* arr[10];
+		CircleParticle** arr;
 		sf::Clock clock;
 	public:
 		//Prototypes
 		ParticleEffect();
-		void update(sf::RenderWindow& window);
-		void render(sf::RenderWindow& window);
-		void emit(sf::Vector2f& pos);
-		Particle* addParticle(int index, Particle* particle);
-		~ParticleEffect();
+		virtual void update(sf::RenderWindow& window) = 0;
+		virtual void render(sf::RenderWindow& window) = 0;
+		virtual void emit(sf::Vector2f& pos) = 0;
+		virtual CircleParticle* addParticle(int index, CircleParticle* particle) = 0;
 	};
 }
 #endif

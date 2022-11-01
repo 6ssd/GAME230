@@ -15,8 +15,9 @@
 #include <fstream>
 
 //Headers
-#include "Particle.h"
-#include "ParticleEffects.h"
+#include "CircleParticle.h"
+#include "FireworkEffect.h"
+#include "SnowEffect.h"
 #include "Random.h"
 
 namespace gm {

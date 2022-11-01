@@ -136,10 +136,16 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleEffects.cpp" />
+    <ClCompile Include="FireworkEffect.cpp" />
+    <ClCompile Include="SnowEffect.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="CircleParticle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="CircleParticle.h" />
+    <ClInclude Include="FireworkEffect.h" />
+    <ClInclude Include="SnowEffect.h" />
     <ClInclude Include="ParticleEffects.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Random.h" />

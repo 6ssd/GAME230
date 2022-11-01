@@ -18,10 +18,10 @@
 namespace gm {
 
 	class Particle {
-	private:
+	protected:
 		//Global variables
-		sf::CircleShape body;
-		float radius = 10;
+		sf::CircleShape* body;
+		float radius;
 		sf::Vector2f position;
 		sf::Vector2f velocity;
 		short lifespan;
@@ -29,15 +29,21 @@ namespace gm {
 	public:
 		//Prototypes
 		Particle();
-		Particle(sf::Vector2f& pos);
-		void update(sf::RenderWindow& window);
-		void render(sf::RenderWindow& window);
-		const sf::CircleShape getShape() const;
-		const sf::Vector2f& getVelocity() const;
-		const int getLifespan() const;
-		const bool isAlive() const;
-		void setVelocity(sf::Vector2f& vel);
-		~Particle();
+		virtual void update(sf::RenderWindow& window) = 0;
+		virtual void render(sf::RenderWindow& window) = 0;
+
+		//Getters
+		virtual const sf::Vector2f& getPosition() const;
+		virtual const sf::CircleShape* getShape() const;
+		virtual const sf::Vector2f& getVelocity() const;
+		virtual const int getLifespan() const;
+		virtual const bool isAlive() const;
+
+		//Setters
+		virtual void setVelocity(sf::Vector2f& vel);
+		virtual void setRadius(float r);
+		virtual void setPos(sf::Vector2f& pos);
+		virtual void setColor(int a, int b, int c);
 	};
 }
 
