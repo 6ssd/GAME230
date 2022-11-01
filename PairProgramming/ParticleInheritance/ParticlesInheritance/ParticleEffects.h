@@ -30,6 +30,7 @@ namespace gm {
 		virtual void render(sf::RenderWindow& window) = 0;
 		virtual void emit(sf::Vector2f& pos) = 0;
 		virtual CircleParticle* addParticle(int index, CircleParticle* particle) = 0;
+		virtual ~ParticleEffect();
 	};
 }
 #endif

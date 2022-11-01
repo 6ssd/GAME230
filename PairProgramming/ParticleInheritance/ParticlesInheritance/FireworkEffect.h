@@ -12,7 +12,7 @@ namespace gm {
 		virtual void render(sf::RenderWindow& window) override;
 		virtual void emit(sf::Vector2f& pos) override;
 		virtual CircleParticle* addParticle(int index, CircleParticle* particle) override;
-		~FireworkEffect();
+		virtual ~FireworkEffect();
 	};
 }
 #endif 

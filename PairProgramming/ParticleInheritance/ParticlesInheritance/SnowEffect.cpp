@@ -88,7 +88,11 @@ SnowEffect::~SnowEffect() {
 		if (arr[i] != NULL)
 		{
 			delete arr[i];
-			arr[i] = NULL;
+			arr[i] = nullptr;
 		}
 	}
+
+	delete arr;
+	*arr = nullptr;
+	arr = nullptr;
 }

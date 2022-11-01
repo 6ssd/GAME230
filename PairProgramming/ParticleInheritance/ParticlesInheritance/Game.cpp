@@ -11,7 +11,7 @@ ParticleEffect* e;
 
 //constructor
 Game::Game() {
-    e = new SnowEffect();
+    e = new FireworkEffect();
 }
 
 //functions
@@ -24,6 +24,22 @@ void Game::handleInput(RenderWindow& window) {
         {
             Vector2f mousePos = Vector2f(float(event.mouseButton.x-10), float(event.mouseButton.y-10));
             e->emit(mousePos);
+        }
+
+        //Firework Effect: Press 1
+        if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num1)
+        {
+            delete e;
+            e = nullptr;
+            e = new FireworkEffect();
+        }
+
+        //Snow Effect: Press 2
+        if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2)
+        {
+            delete e;
+            e = nullptr;
+            e = new SnowEffect();
         }
 
         //Exit program

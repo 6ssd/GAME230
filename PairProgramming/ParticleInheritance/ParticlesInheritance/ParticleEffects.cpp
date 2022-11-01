@@ -9,3 +9,8 @@ using namespace std;
 
 //constructor
 ParticleEffect::ParticleEffect(){}
+
+ParticleEffect::~ParticleEffect() {
+	delete[] arr;
+	delete arr;
+}
