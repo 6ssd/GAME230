@@ -22,11 +22,7 @@ int main()
     while (window.isOpen())
     {
 
-        g.handleInput(window);
-
-        g.update(window);
-
-        g.render(window);
+        g.play(window);
     }
 
     return 0;

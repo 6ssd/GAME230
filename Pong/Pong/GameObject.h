@@ -28,8 +28,8 @@ namespace gm {
 		GameObject(const sf::Vector2f& position, const sf::Vector2f& size);
 
 		//update and render
-		virtual void update(sf::RenderWindow& window) = 0;
-		virtual void render(sf::RenderWindow& window) = 0;
+		virtual void update(sf::RenderWindow& window, float deltaTime) = 0;
+		virtual void render(sf::RenderWindow& window, float deltaTime) = 0;
 
 		//get position
 		virtual const sf::Vector2f& getPosition() const;
